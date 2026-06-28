@@ -250,31 +250,251 @@ footer{background:#120600;color:rgba(255,255,255,.58);padding:68px 0 26px}
 @keyframes waring{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0;transform:scale(1.4)}}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1024px){.prod-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:768px){
-  .nav-toggle{display:flex}
-  nav{display:none;position:absolute;top:80px;left:0;right:0;background:var(--ivory);border-bottom:1px solid var(--border);padding:12px 16px;flex-direction:column;align-items:stretch;box-shadow:var(--sh-md)}
-  nav.open{display:flex}
-  nav a{padding:10px 14px}
+
+/* ════════════════════════════════════════
+   RESPONSIVE — Desktop / Tablet / Mobile
+   ════════════════════════════════════════ */
+
+/* ── LARGE DESKTOP 1280px+ ── */
+@media(min-width:1280px){
+  .hero h1{font-size:72px}
+  .prod-grid{grid-template-columns:repeat(4,1fr)}
+  .cat-grid-simple{grid-template-columns:repeat(5,1fr)}
+}
+
+/* ── DESKTOP / LAPTOP 1024px–1279px ── */
+@media(max-width:1279px){
+  .container{max-width:960px}
+  .prod-grid{grid-template-columns:repeat(3,1fr)}
+  .hero-inner{gap:36px}
+  .gf,.gi{width:340px;height:340px}
+  .gi img{width:86%;height:86%}
+}
+
+/* ── TABLET LANDSCAPE 768px–1023px ── */
+@media(max-width:1023px){
+  .container{padding:0 18px}
+  .hdr{padding:10px 18px}
   .hdr-phone{display:none}
-  .hero-inner{grid-template-columns:1fr}
-  .hero-vis{display:none}
-  .hero-stats{grid-template-columns:repeat(2,1fr)}
-  .prod-grid{grid-template-columns:repeat(2,1fr)}
-  .how-steps{grid-template-columns:1fr 1fr;gap:28px}
+
+  /* Nav */
+  .nav-toggle{display:flex}
+  nav{
+    display:none;position:absolute;top:78px;left:0;right:0;
+    background:var(--ivory);border-bottom:2px solid var(--border);
+    padding:10px 16px;flex-direction:column;align-items:stretch;
+    box-shadow:var(--sh-md);z-index:999;
+  }
+  nav.open{display:flex}
+  nav a{padding:11px 16px;font-size:15px;border-radius:8px}
+
+  /* Hero */
+  .hero-inner{grid-template-columns:1fr 320px;gap:30px;padding:50px 18px 60px}
+  .gf,.gi{width:300px;height:300px}
+  .gi img{width:88%;height:88%}
+  .hero h1{font-size:40px}
+  .hero-badge{top:16px;right:-4px;font-size:11px;padding:8px 14px}
+
+  /* Catalogue */
+  .cat-tabs{gap:7px;justify-content:flex-start;overflow-x:auto;padding-bottom:6px;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
+  .cat-tab{white-space:nowrap;flex-shrink:0}
+  .prod-grid{grid-template-columns:repeat(3,1fr);gap:16px}
+
+  /* How */
+  .how-steps{grid-template-columns:repeat(2,1fr);gap:32px;row-gap:40px}
   .how-steps::before{display:none}
+
+  /* About */
+  .about-in{grid-template-columns:1fr 1fr;gap:40px}
+  .about-visual{display:block}
+  .about-stat-badge{bottom:-14px;right:-14px}
+
+  /* Testimonials */
+  .testi-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* Contact */
+  .contact-in{grid-template-columns:1fr 1fr;gap:30px}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:1.5fr 1fr 1fr;gap:28px}
+  .footer-grid > div:last-child{grid-column:1/-1}
+}
+
+/* ── TABLET PORTRAIT 600px–767px ── */
+@media(max-width:767px){
+  /* Ann bar */
+  .ann-bar{font-size:12px;padding:8px 14px}
+
+  /* Header */
+  .hdr{padding:8px 14px;gap:10px}
+  .logo img{width:52px;height:58px}
+  .logo-name{font-size:16px}
+  .logo-sub{font-size:10px}
+
+  /* Hero */
+  .hero{min-height:auto}
+  .hero-inner{grid-template-columns:1fr;gap:0;padding:44px 16px 52px}
+  .hero-vis{display:none}
+  .hero h1{font-size:clamp(32px,7vw,44px)}
+  .hero-desc{font-size:14.5px}
+  .hero-btns{gap:10px}
+  .hero-btns .btn{padding:11px 20px;font-size:13.5px}
+  .hero-stats{grid-template-columns:repeat(4,1fr)}
+  .hs strong{font-size:22px}
+  .hs span{font-size:10px}
+
+  /* Trust */
+  .trust-in{gap:0;flex-direction:column;align-items:flex-start;padding:0 16px}
+  .ti{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);width:100%;padding:10px 0}
+
+  /* Catalogue */
+  .catalogue{padding:60px 0}
+  .cat-tabs{gap:6px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 0 8px}
+  .cat-tab{font-size:12.5px;padding:8px 14px;flex-shrink:0;white-space:nowrap}
+  .prod-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .pc-thumb{height:150px;font-size:42px}
+  .pc-body{padding:13px}
+  .pc-body h3{font-size:15px}
+  .pc-desc{font-size:12px}
+  .group-title{font-size:18px}
+
+  /* How */
+  .how{padding:60px 0}
+  .how-steps{grid-template-columns:repeat(2,1fr);gap:24px;row-gap:36px}
+  .how-steps::before{display:none}
+  .step-num{width:70px;height:70px;font-size:24px}
+  .step h3{font-size:14.5px}
+  .step p{font-size:12.5px}
+
+  /* About */
+  .about{padding:60px 0}
   .about-in{grid-template-columns:1fr}
   .about-visual{display:none}
+  .about-feats{grid-template-columns:1fr 1fr}
+  .af{padding:13px}
+
+  /* Testimonials */
+  .testi{padding:60px 0}
   .testi-grid{grid-template-columns:1fr}
+  .tc{padding:22px}
+
+  /* Contact */
+  .contact{padding:60px 0}
   .contact-in{grid-template-columns:1fr}
+  .form-box{padding:24px}
+  .form-row{grid-template-columns:1fr}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .footer-grid > div:first-child{grid-column:1/-1}
+}
+
+/* ── MOBILE 480px–599px ── */
+@media(max-width:599px){
+  .prod-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .hs{padding:12px 8px}
   .footer-grid{grid-template-columns:1fr 1fr}
 }
-@media(max-width:480px){
-  .prod-grid{grid-template-columns:1fr 1fr}
+
+/* ── SMALL MOBILE 320px–479px ── */
+@media(max-width:479px){
+  /* Ann bar */
+  .ann-bar{font-size:11px;padding:7px 10px}
+
+  /* Header */
+  .logo-name{font-size:14px}
+  .logo-sub{display:none}
+  .logo img{width:44px;height:50px}
+  .hdr{padding:8px 12px}
+  .hdr-right .btn{padding:9px 14px;font-size:12.5px}
+
+  /* Hero */
+  .hero-inner{padding:36px 14px 44px}
+  .hero h1{font-size:28px}
+  .hero-eye span{font-size:10px;letter-spacing:2.5px}
+  .hero-desc{font-size:13.5px;margin-bottom:24px}
+  .hero-btns{flex-direction:column;gap:10px}
+  .hero-btns .btn{width:100%;justify-content:center;padding:13px 20px}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:1px}
+  .hs strong{font-size:20px}
+  .hs span{font-size:10px}
+
+  /* Trust */
+  .ti{font-size:12px}
+  .ti svg{width:15px;height:15px}
+
+  /* Catalogue */
+  .catalogue{padding:44px 0}
+  .cat-head{margin-bottom:36px;padding:0 14px}
+  .prod-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .pc-thumb{height:130px;font-size:36px}
+  .pc-body{padding:11px}
+  .pc-body h3{font-size:13.5px}
+  .pc-desc{display:none}
+  .pc-price{font-size:16px}
+  .pc-foot .btn{padding:7px 10px;font-size:11.5px}
+  .size-chip{font-size:10px;padding:2px 7px}
+  .group-title{font-size:16px;flex-wrap:wrap;gap:8px}
+
+  /* How */
+  .how{padding:44px 0}
+  .how-steps{grid-template-columns:1fr;gap:28px}
+  .step-num{width:64px;height:64px;font-size:22px;margin-bottom:16px}
+
+  /* About */
+  .about{padding:44px 0}
+  .about-feats{grid-template-columns:1fr}
+  .lang-chips{gap:6px}
+  .lc{font-size:12px;padding:4px 11px}
+
+  /* Testimonials */
+  .testi{padding:44px 0}
+  .tc{padding:20px}
+  .tc::before{font-size:72px;top:12px;left:14px}
+  .tc-text{font-size:13.5px}
+
+  /* Contact */
+  .contact{padding:44px 0}
+  .form-box{padding:20px}
+  .form-box h3{font-size:22px}
+  .cc{padding:14px}
+  .cc-ico{width:38px;height:38px;font-size:16px}
+  .wa-cta{padding:14px 20px;font-size:14px}
+
+  /* Footer */
   .footer-grid{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
-  .cat-tabs{gap:6px}
-  .cat-tab{padding:7px 14px;font-size:12.5px}
+  .fc ul li a{font-size:13px}
+  .footer-bot{flex-direction:column;text-align:center;gap:6px}
+
+  /* WA float */
+  .wa-float{width:52px;height:52px;bottom:20px;right:16px}
+  .wa-float svg{width:26px;height:26px}
+
+  /* Section headings */
+  .heading{font-size:28px}
+  .eyebrow{font-size:10px;letter-spacing:2px}
+  .sub{font-size:13.5px}
+}
+
+/* ── VERY SMALL 320px ── */
+@media(max-width:359px){
+  .logo-name{font-size:13px}
+  .hero h1{font-size:26px}
+  .prod-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .pc-thumb{height:110px}
+}
+
+/* ── TOUCH SCROLL for tabs ── */
+.cat-tabs::-webkit-scrollbar{height:3px}
+.cat-tabs::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+.cat-tabs::-webkit-scrollbar-track{background:transparent}
+
+/* ── SAFE AREA for notch phones ── */
+@supports(padding:max(0px)){
+  .ann-bar{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+  .hdr{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+  .wa-float{right:max(16px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom))}
 }
 </style>
 </head>
