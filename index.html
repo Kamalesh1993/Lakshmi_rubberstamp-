@@ -60,8 +60,23 @@ nav a:hover{background:var(--ivory-dk);color:var(--saffron)}
 .hdr-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .hdr-phone{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;white-space:nowrap}
 .hdr-phone svg{width:14px;height:14px;fill:var(--gold)}
-.nav-toggle{display:none;background:none;border:1.5px solid var(--border);border-radius:6px;width:38px;height:38px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px;padding:8px}
-.nav-toggle span{display:block;width:100%;height:2px;background:var(--ink);border-radius:2px}
+.nav-toggle{
+  display:none;
+  background:var(--crimson);
+  border:none;
+  border-radius:6px;
+  width:42px;height:42px;
+  cursor:pointer;
+  align-items:center;justify-content:center;
+  flex-direction:column;gap:5px;
+  padding:9px;
+  box-shadow:0 2px 8px rgba(155,27,48,.3);
+  flex-shrink:0;
+}
+.nav-toggle span{display:block;width:100%;height:2.5px;background:#fff;border-radius:2px;transition:all .3s ease}
+.nav-toggle.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.nav-toggle.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-toggle.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
 
 /* ── HERO ── */
 .hero{background:#1C0A08;position:relative;overflow:hidden;min-height:90vh;display:flex;align-items:center}
@@ -280,13 +295,14 @@ footer{background:#120600;color:rgba(255,255,255,.58);padding:68px 0 26px}
   /* Nav */
   .nav-toggle{display:flex}
   nav{
-    display:none;position:absolute;top:78px;left:0;right:0;
-    background:var(--ivory);border-bottom:2px solid var(--border);
-    padding:10px 16px;flex-direction:column;align-items:stretch;
-    box-shadow:var(--sh-md);z-index:999;
+    display:none;position:absolute;top:74px;left:0;right:0;
+    background:var(--white);border-bottom:2px solid var(--border);
+    padding:12px 16px;flex-direction:column;align-items:stretch;
+    box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:999;
   }
   nav.open{display:flex}
-  nav a{padding:11px 16px;font-size:15px;border-radius:8px}
+  nav a{padding:11px 16px;font-size:15px;border-radius:8px;border-bottom:1px solid var(--border)}
+  nav a:last-child{border-bottom:none}
 
   /* Hero */
   .hero-inner{grid-template-columns:1fr 320px;gap:30px;padding:50px 18px 60px}
@@ -326,6 +342,7 @@ footer{background:#120600;color:rgba(255,255,255,.58);padding:68px 0 26px}
   .ann-bar{font-size:12px;padding:8px 14px}
 
   /* Header */
+  .nav-toggle{display:flex}
   .hdr{padding:8px 14px;gap:10px}
   .logo img{width:52px;height:58px}
   .logo-name{font-size:16px}
@@ -516,7 +533,11 @@ footer{background:#120600;color:rgba(255,255,255,.58);padding:68px 0 26px}
         <span class="logo-sub">லட்சுமி ரப்பர் ஸ்டாம்ப்</span>
       </div>
     </a>
-    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <nav id="mainNav">
       <a href="#catalogue">Products</a>
       <a href="#how">How It Works</a>
@@ -1018,8 +1039,21 @@ footer{background:#120600;color:rgba(255,255,255,.58);padding:68px 0 26px}
 // Nav toggle
 const toggle = document.getElementById('navToggle');
 const nav = document.getElementById('mainNav');
-toggle.addEventListener('click', () => nav.classList.toggle('open'));
-nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+toggle.addEventListener('click', () => {
+  nav.classList.toggle('open');
+  toggle.classList.toggle('active');
+});
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  nav.classList.remove('open');
+  toggle.classList.remove('active');
+}));
+// Close nav on outside click
+document.addEventListener('click', (e) => {
+  if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+    nav.classList.remove('open');
+    toggle.classList.remove('active');
+  }
+});
 
 // Product tab switching
 function showGroup(id, btn) {
